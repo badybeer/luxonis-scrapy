@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches
+*.pyc
+.DS_Store
+
+# DB
+db.sqlite3
+
+# Logs
+*.log
+
+# env súbory
+.env
+
+/output.json
+
+postgres_data/

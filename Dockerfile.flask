@@ -1,0 +1,15 @@
+FROM python:3.8
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY luxonis_zadanie/ ./luxonis_zadanie
+WORKDIR /usr/src/app/luxonis_zadanie
+
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=8080
+
+CMD ["flask", "run"]

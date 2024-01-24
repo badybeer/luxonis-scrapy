@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: sreality
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d sreality"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  scrapy:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_NAME=sreality
+      - DATABASE_USER=admin
+      - DATABASE_PASSWORD=admin
+
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile.flask
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_NAME=sreality
+      - DATABASE_USER=admin
+      - DATABASE_PASSWORD=admin
+
+volumes:
+  postgres_data:
