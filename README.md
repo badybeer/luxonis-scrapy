@@ -17,7 +17,7 @@ Pred spustením sa uistite, že máte nainštalované:
 
 1. Naklonujte repozitár:
 
-git clone https://github.com/tvoje-uzivatelske-meno/tvoj-repozitar.git
+git clone https://github.com/badybeer/luxonis-scrapy.git
 
 2. Prejdite do koreňového adresára projektu:
 
@@ -42,7 +42,7 @@ Projekt obsahuje nasledujúce hlavné komponenty:
 
 ## Autor
 
-Tvoje meno
+Jozef Badár
 
 ## Licencia
 
